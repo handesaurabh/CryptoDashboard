@@ -35,13 +35,51 @@
 .coin-watchlist-cell{
   display: flex;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  justify-content: flex-end;
+  min-width: 0;
 }
 
-.coin-watchlist-cell:hover{
-  transform: scale(1.2);
+.watchlist-button{
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.95rem;
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.watchlist-button:hover{
+  transform: translateY(-1px);
+  background: rgba(0, 212, 255, 0.1);
+  border-color: rgba(0, 212, 255, 0.28);
+  color: var(--cyan);
+  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.12);
+}
+
+.watchlist-button:focus-visible{
+  outline: 2px solid rgba(0, 212, 255, 0.55);
+  outline-offset: 3px;
+}
+
+.watchlist-button-active{
+  background: rgba(10, 101, 238, 0.16);
+  border-color: rgba(0, 212, 255, 0.26);
+  color: var(--blue);
+}
+
+.watchlist-icon{
+  font-size: 1.35rem !important;
+}
+
+.active-watchlist-icon{
+  color: var(--blue);
 }
 
 .td-image{
@@ -99,7 +137,7 @@
 }
 
 .list-row-static{
-  grid-template-columns: 60px minmax(160px, 1.1fr) 132px 50px minmax(150px, 0.95fr) minmax(170px, 1fr) minmax(180px, 1.05fr);
+  grid-template-columns: 60px minmax(170px, 1.1fr) 132px 50px minmax(150px, 0.95fr) minmax(170px, 1fr) minmax(180px, 1.05fr) 52px;
   gap: 0.85rem;
   margin: 0;
   padding: 0;
@@ -122,6 +160,7 @@
   align-self: stretch;
   display: flex;
   align-items: center;
+  min-width: 0;
 }
 
 .list-row-static .name-col{
@@ -163,6 +202,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.list-row-static .coin-watchlist-cell{
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .list-row-static .trend-icon{
@@ -219,15 +265,23 @@
   word-break: break-word;
 }
 
+.list-row-static .watchlist-button{
+  width: 2.9rem;
+  height: 2.9rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.045);
+  border-color: rgba(255, 255, 255, 0.11);
+}
+
 @media (max-width: 1200px){
   .list-row{
-    grid-template-columns: 50px 1.5fr 1fr 50px 1.1fr 1.4fr 1.6fr;
+    grid-template-columns: 50px 1.5fr 1fr 50px 1.1fr 1.4fr 1.6fr 46px;
     margin: 0.8rem 1rem;
     padding: 0.9rem 1rem;
   }
 
   .list-row-static{
-    grid-template-columns: 56px minmax(145px, 1.05fr) 126px 46px minmax(140px, 0.95fr) minmax(155px, 1fr) minmax(155px, 1fr);
+    grid-template-columns: 56px minmax(145px, 1.05fr) 126px 46px minmax(140px, 0.95fr) minmax(155px, 1fr) minmax(155px, 1fr) 48px;
     margin: 0;
     padding: 0;
   }
@@ -244,11 +298,11 @@
 
 @media (max-width: 992px){
   .list-row{
-    grid-template-columns: 45px 1.6fr 1fr 45px 1.2fr 1.6fr;
+    grid-template-columns: 45px 1.6fr 1fr 45px 1.2fr 1.6fr 44px;
   }
 
   .list-row-static{
-    grid-template-columns: 52px minmax(130px, 1.1fr) 122px 44px minmax(135px, 1fr) minmax(145px, 1fr);
+    grid-template-columns: 52px minmax(130px, 1.1fr) 122px 44px minmax(135px, 1fr) minmax(145px, 1fr) 46px;
     gap: 0.7rem;
   }
 
@@ -263,14 +317,14 @@
 
 @media (max-width: 768px){
   .list-row{
-    grid-template-columns: 42px 2fr 1fr 42px 1.2fr;
+    grid-template-columns: 42px 2fr 1fr 42px 1.2fr 40px;
     gap: 0.75rem;
     margin: 0.7rem;
     padding: 0.8rem;
   }
 
   .list-row-static{
-    grid-template-columns: 48px minmax(120px, 1fr) 118px 40px minmax(132px, 1fr);
+    grid-template-columns: 48px minmax(120px, 1fr) 118px 40px minmax(132px, 1fr) 44px;
     gap: 0.65rem;
   }
 
@@ -310,7 +364,7 @@
 
 @media (max-width: 576px){
   .list-row{
-    grid-template-columns: 40px 2.5fr 1fr 40px;
+    grid-template-columns: 40px 2.4fr 1fr 40px 1fr 38px;
     padding: 0.7rem;
   }
 
@@ -328,7 +382,7 @@
   }
 
   .list-row-static{
-    grid-template-columns: 42px minmax(110px, 1fr) 112px 38px;
+    grid-template-columns: 42px minmax(110px, 1fr) 112px 38px 42px;
     gap: 0.55rem;
   }
 
@@ -366,7 +420,7 @@
 
 @media (max-width: 420px){
   .list-row{
-    grid-template-columns: 38px 3fr 1fr;
+    grid-template-columns: 38px 2.3fr 1fr 1fr 38px;
   }
 
   .trend-icon{
@@ -374,7 +428,7 @@
   }
 
   .list-row-static{
-    grid-template-columns: 38px minmax(100px, 1fr) 100px;
+    grid-template-columns: 38px minmax(100px, 1fr) 100px 40px;
   }
 
   .list-row-static .coin-trend-cell{

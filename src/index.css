@@ -77,28 +77,19 @@ img {
 }
 
 .coin-container {
-  width: min(1100px, calc(100% - 2rem));
+  width: min(1260px, calc(100% - 2rem));
   margin: 2rem auto 0;
-  padding: 1rem 1.1rem;
+  padding: 1.2rem 1.35rem;
   background:
-    radial-gradient(circle at top left, rgba(0, 212, 255, 0.12), transparent 30%),
-    linear-gradient(145deg, rgba(10, 101, 238, 0.12), rgba(255, 255, 255, 0.03));
-  border: 1px solid rgba(0, 212, 255, 0.18);
-  border-radius: 1.5rem;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    radial-gradient(circle at top left, rgba(0, 212, 255, 0.14), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(10, 101, 238, 0.12), transparent 28%),
+    linear-gradient(135deg, rgba(20, 30, 46, 0.96), rgba(27, 27, 27, 0.94));
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 1.6rem;
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.32);
   backdrop-filter: blur(16px);
   overflow: hidden;
   box-sizing: border-box;
-}
-
-.coin-summary-table {
-  width: 100%;
-  display: block;
-  margin: 0;
-}
-
-.coin-summary-table tbody {
-  display: block;
 }
 
 .coin-info h2 {
@@ -130,7 +121,7 @@ img {
   }
 
   .coin-container {
-    padding: 0.9rem;
+    padding: 1rem;
     border-radius: 1rem;
   }
 

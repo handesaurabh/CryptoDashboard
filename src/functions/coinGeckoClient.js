@@ -1,21 +1,21 @@
 import axios from "axios";
 
-const coinGeckoDemoApiKey = process.env.REACT_APP_COINGECKO_DEMO_API_KEY?.trim();
+const cgKey = process.env.REACT_APP_CG_KEY?.trim();
 export const COIN_GECKO_URL = "https://api.coingecko.com/api/v3/coins/";
-const directCoinGeckoBaseUrl = COIN_GECKO_URL.replace(/\/coins\/$/, "");
-const coinGeckoBaseUrl =
-    process.env.REACT_APP_COINGECKO_BASE_URL?.trim() ||
-    (process.env.NODE_ENV === "development" ? "/api/v3" : directCoinGeckoBaseUrl);
+const directCgUrl = COIN_GECKO_URL.replace(/\/coins\/$/, "");
+const cgBaseUrl =
+    process.env.REACT_APP_CG_URL?.trim() ||
+    (process.env.NODE_ENV === "development" ? "/api/v3" : directCgUrl);
 
-export const hasCoinGeckoDemoApiKey = Boolean(coinGeckoDemoApiKey);
-const isLocalProxyBaseUrl = coinGeckoBaseUrl.startsWith("/");
+export const hasCgKey = Boolean(cgKey);
+const isLocalProxyUrl = cgBaseUrl.startsWith("/");
 const defaultHeaders = {
     Accept: "application/json",
-    ...(coinGeckoDemoApiKey ? { "x-cg-demo-api-key": coinGeckoDemoApiKey } : {}),
+    ...(cgKey ? { "x-cg-demo-api-key": cgKey } : {}),
 };
 
 export const coinGeckoClient = axios.create({
-    baseURL: coinGeckoBaseUrl,
+    baseURL: cgBaseUrl,
     timeout: 15000,
     headers: defaultHeaders,
 });
@@ -27,9 +27,49 @@ const RESPONSE_CACHE_TTL_MS = 5 * 60 * 1000;
 export const isCanceledRequest = (error) =>
     axios.isCancel?.(error) || error?.name === "CanceledError";
 
+const createCanceledError = () =>
+    new axios.CanceledError("The request was canceled before it finished.");
+
+// Shared GET requests ignore per-caller abort signals so one Strict Mode cleanup
+// does not cancel the identical request needed by the next render pass.
+const awaitWithSignal = (requestPromise, signal) => {
+    if (!signal) {
+        return requestPromise;
+    }
+
+    if (signal.aborted) {
+        return Promise.reject(createCanceledError());
+    }
+
+    return new Promise((resolve, reject) => {
+        let settled = false;
+
+        const cleanup = () => {
+            signal.removeEventListener("abort", handleAbort);
+        };
+
+        const finish = (callback) => (value) => {
+            if (settled) return;
+            settled = true;
+            cleanup();
+            callback(value);
+        };
+
+        const handleAbort = () => {
+            if (settled) return;
+            settled = true;
+            cleanup();
+            reject(createCanceledError());
+        };
+
+        signal.addEventListener("abort", handleAbort, { once: true });
+        requestPromise.then(finish(resolve), finish(reject));
+    });
+};
+
 const buildRequestCacheKey = (config = {}) =>
     JSON.stringify({
-        baseURL: coinGeckoBaseUrl,
+        baseURL: cgBaseUrl,
         method: config.method || "get",
         url: config.url || "",
         params: config.params || {},
@@ -43,17 +83,27 @@ export const requestCoinGecko = async (config) => {
         const cachedEntry = cachedResponses.get(cacheKey);
 
         if (cachedEntry && Date.now() - cachedEntry.timestamp < RESPONSE_CACHE_TTL_MS) {
+            if (config.signal?.aborted) {
+                throw createCanceledError();
+            }
+
             return cachedEntry.response;
         }
 
         if (inflightRequests.has(cacheKey)) {
-            return inflightRequests.get(cacheKey);
+            return awaitWithSignal(inflightRequests.get(cacheKey), config.signal);
         }
     }
 
     const requestPromise = (async () => {
         try {
-            const response = await coinGeckoClient.request(config);
+            const requestConfig = isGetRequest ? { ...config } : config;
+
+            if (isGetRequest) {
+                delete requestConfig.signal;
+            }
+
+            const response = await coinGeckoClient.request(requestConfig);
 
             if (isGetRequest) {
                 cachedResponses.set(cacheKey, {
@@ -69,13 +119,13 @@ export const requestCoinGecko = async (config) => {
     })();
 
     if (!isGetRequest) {
-        return requestPromise;
+        return awaitWithSignal(requestPromise, config.signal);
     }
 
     inflightRequests.set(cacheKey, requestPromise);
 
     try {
-        return await requestPromise;
+        return await awaitWithSignal(requestPromise, config.signal);
     } finally {
         inflightRequests.delete(cacheKey);
     }
@@ -90,9 +140,9 @@ export const getCoinGeckoErrorMessage = (error) => {
         const status = error.response?.status;
 
         if (status === 401 || status === 403) {
-            return hasCoinGeckoDemoApiKey
+            return hasCgKey
                 ? "CoinGecko rejected the configured demo API key."
-                : "CoinGecko requires a demo API key for this request. Add REACT_APP_COINGECKO_DEMO_API_KEY to your local environment and restart the app.";
+                : "CoinGecko requires a demo API key for this request. Add REACT_APP_CG_KEY to your local environment and restart the app.";
         }
 
         if (status === 429) {
@@ -100,7 +150,7 @@ export const getCoinGeckoErrorMessage = (error) => {
         }
 
         if (status === 404) {
-            return isLocalProxyBaseUrl
+            return isLocalProxyUrl
                 ? "The local CoinGecko proxy is not responding. Restart the dev server so /api requests are forwarded correctly."
                 : "CoinGecko returned 404 for this request.";
         }
@@ -110,9 +160,9 @@ export const getCoinGeckoErrorMessage = (error) => {
         }
 
         if (error.request) {
-            return hasCoinGeckoDemoApiKey
+            return hasCgKey
                 ? "The browser could not reach CoinGecko right now."
-                : "The browser could not reach CoinGecko. Add REACT_APP_COINGECKO_DEMO_API_KEY to your local environment if CoinGecko is rejecting unauthenticated browser requests.";
+                : "The browser could not reach CoinGecko. Add REACT_APP_CG_KEY to your local environment if CoinGecko is rejecting unauthenticated browser requests.";
         }
     }
 

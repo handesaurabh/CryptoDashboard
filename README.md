@@ -5,14 +5,14 @@
 CoinGecko's current docs show authenticated browser examples for endpoints like `/coins/{id}` and `/coins/{id}/market_chart`. If the app logs `AxiosError: Network Error`, create a local env file and add your demo key:
 
 ```bash
-REACT_APP_COINGECKO_DEMO_API_KEY=your_coingecko_demo_api_key
+REACT_APP_CG_KEY=your_coingecko_demo_api_key
 ```
 
 Use `.env.local` for local development, then restart `npm start`.
 
 By default, the app now calls CoinGecko directly and deduplicates repeated GET requests in development so React Strict Mode does not spam the API.
 
-If you specifically want to use a local proxy, set `REACT_APP_COINGECKO_BASE_URL=/api/v3` and restart the dev server.
+If you specifically want to use a local proxy, set `REACT_APP_CG_URL=/api/v3` and restart the dev server.
 
 Reference docs:
 

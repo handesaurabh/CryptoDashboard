@@ -42,6 +42,10 @@ const List = ({ coin, index, isClickable = true }) => {
         setInWatchlist(!inWatchlist);
     };
 
+    const handleWatchlistKeyDown = (e) => {
+        e.stopPropagation();
+    };
+
     useEffect(() => {
         const handleResize = () => setWidth(window.innerWidth);
         window.addEventListener('resize', handleResize);
@@ -112,12 +116,20 @@ const List = ({ coin, index, isClickable = true }) => {
             </Tooltip>
 
             <Tooltip title={inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"} arrow>
-                <td className="coin-watchlist-cell" onClick={handleWatchlistClick} style={{ cursor: 'pointer' }}>
-                    {inWatchlist ? (
-                        <StarIcon style={{ color: 'var(--blue)' }} />
-                    ) : (
-                        <StarBorderIcon style={{ color: 'rgba(255, 255, 255, 0.6)' }} />
-                    )}
+                <td className="coin-watchlist-cell">
+                    <button
+                        type="button"
+                        className={`watchlist-button ${inWatchlist ? "watchlist-button-active" : ""}`}
+                        onClick={handleWatchlistClick}
+                        onKeyDown={handleWatchlistKeyDown}
+                        aria-label={inWatchlist ? `Remove ${coin.name} from watchlist` : `Add ${coin.name} to watchlist`}
+                    >
+                        {inWatchlist ? (
+                            <StarIcon className="watchlist-icon active-watchlist-icon" />
+                        ) : (
+                            <StarBorderIcon className="watchlist-icon" />
+                        )}
+                    </button>
                 </td>
             </Tooltip>
         </tr>

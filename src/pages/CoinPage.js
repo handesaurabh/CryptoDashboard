@@ -3,14 +3,14 @@ import { useParams } from 'react-router-dom';
 import Header from '../components/Common/Header';
 import Loader from '../components/Common/Loader/Loader';
 import { coinObj } from '../functions/convertObj';
-import List from '../components/Dashboard/List/List';
 import CoinInfo from '../components/Coin/CoinInfo/CoinInfo';
+import CoinSummaryCard from '../components/Coin/CoinSummaryCard/CoinSummaryCard';
 import { getCoinData } from '../functions/getCoinData';
 import { getCoinPrice } from '../functions/getCoinPrice';
 import LineChart from '../components/Coin/LineChart/LineChart';
 import SelectDays from '../components/Coin/SelectDays/SelectDays';
 import PriceType from '../components/Coin/PriceType/PriceType';
-import { hasCoinGeckoDemoApiKey } from '../functions/coinGeckoClient';
+import { hasCgKey } from '../functions/coinGeckoClient';
 
 const priceTypeConfig = {
     prices: {
@@ -84,9 +84,9 @@ const CoinPage = () => {
                 setMarketData(null);
                 setChartData(null);
                 setError(
-                    hasCoinGeckoDemoApiKey
+                    hasCgKey
                         ? "Unable to load coin details right now."
-                        : "Unable to load coin details right now. Add REACT_APP_COINGECKO_DEMO_API_KEY to .env.local and restart the app if CoinGecko is rejecting browser requests."
+                        : "Unable to load coin details right now. Add REACT_APP_CG_KEY to .env.local and restart the app if CoinGecko is rejecting browser requests."
                 );
                 setLoading(false);
                 return;
@@ -143,11 +143,7 @@ const CoinPage = () => {
             ) : coinData ? (
                 <>
                     <div className='coin-container'>
-                        <table className='list-table coin-summary-table'>
-                            <tbody>
-                                <List coin={coinData} isClickable={false} />
-                            </tbody>
-                        </table>
+                        <CoinSummaryCard coin={coinData} />
                     </div>
                     <SelectDays days={days} onDaysChange={setDays} />
                     <PriceType priceType={priceType} handlePriceTypeChange={handlePriceTypeChange} />
