@@ -1,0 +1,18 @@
+.read-more-btn {
+    margin-top: 1rem;
+    padding: 0.55rem 1rem;
+    border: 1px solid var(--cyan);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--cyan);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.read-more-btn:hover {
+    background: var(--cyan);
+    color: var(--black);
+}

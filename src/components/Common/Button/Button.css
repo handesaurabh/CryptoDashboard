@@ -1,0 +1,38 @@
+.btn{
+background-color: cyan;
+color: black;
+padding: 0.5rem 1rem;
+border-radius: 3rem;
+cursor: pointer;
+font-weight: 700;
+text-align: center;
+min-width: 150px;
+text-transform: capitalize;
+}
+
+/* https://tools.3dx8.com/css/box-shadow.html :- Online box shadow tool */
+/* https://cssgridgenerator.io/ :- Grid generator */
+.btn:hover{
+box-shadow: -1px 1px 28px 2px rgba(28,217,230,1);
+transition: all 0.3s;
+}
+
+.outline-btn{
+background-color: transparent;
+color: cyan;
+padding: 0.5rem 1rem;
+border-radius: 3rem;
+cursor: pointer;
+font-weight: 700;
+border: 2px solid cyan;
+text-align: center;
+min-width: 150px;
+text-transform: capitalize;
+}
+
+.outline-btn:hover{
+box-shadow: -1px 1px 28px 2px rgba(28,217,230,1);
+transition: all 0.3s;
+background-color: var(--cyan);
+color: var(--black);
+}

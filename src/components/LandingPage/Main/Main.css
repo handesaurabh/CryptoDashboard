@@ -1,0 +1,109 @@
+.flex-info{
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+padding: 0.5rem 3rem;
+}
+
+.real-time,.track-heading{
+font-size: 6rem;
+margin: 0;
+}
+
+.track-heading{
+color: var(--white);
+/* https://css-tricks.com/adding-stroke-to-web-text/ */
+-webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: var(--cyan);
+}
+
+.track-heading:hover{
+color: var(--black);
+  -webkit-text-stroke-color: var(--cyan);
+transition: all 0.3s;
+}
+
+.real-time{
+color: var(--cyan);
+}
+
+.info-text{
+font-size: 1rem;
+color: var(--gray);
+}
+
+.btn-text{
+display: flex;
+justify-content: flex-start;
+gap: 1.5rem;
+align-items: center;
+margin-top: 2rem;
+}
+
+.phone-container{
+width: 50%;
+position: relative;
+padding: 1rem;
+}
+
+.iphone{
+position: absolute;
+z-index: 100;
+min-width: 300px;
+width:50%;
+right: 0;
+}
+
+.gradient{
+position: absolute;
+min-width: 250px;
+width: 40%;
+top: 7rem;
+right: 0;
+}
+
+@media only screen and (max-width:1200px) {
+.iphone{
+min-width: 250px;
+width:50%;
+}
+
+.gradient{
+min-width: 200px;
+top: 5rem;
+}
+}
+
+@media only screen and (max-width:800px) {
+  .flex-info{
+   flex-direction: column;
+  }
+.phone-container{
+display: block;
+margin: auto;
+margin-top: 4rem;
+}
+.iphone{
+left: 10%;
+}
+.gradient{
+left: 28%;
+}
+.left{
+width: 100%;
+}
+.real-time,.track-heading{
+font-size: 4rem;
+text-align: center;
+}
+.track-heading{
+-webkit-text-stroke-width: 1.5px;
+}
+.info-text{
+text-align: center;
+}
+.btn-text{
+margin: auto;
+justify-content: center;
+}
+}

@@ -1,0 +1,27 @@
+.search-flex{
+display: flex;
+justify-content: flex-start;
+align-items: center;
+gap: 0.5rem;
+padding: 1rem;
+color: var(--grey);
+background-color: var(--darkgrey);
+border-radius: 3rem;
+width: 85%;
+margin: 1rem;
+margin-right: auto;
+margin-left: auto;
+cursor: pointer;
+}
+
+.search-flex input{
+background-color: var(--darkgrey);
+width: 100%;
+font-family: 'Times New Roman', Times, serif;
+font-size: 1.2rem;
+color: var(--cyan);
+border: none;
+}
+.search-flex input:focus{
+outline: none;
+}

@@ -1,3 +1,24 @@
+# Real Crypto Tracker
+
+## CoinGecko Setup
+
+CoinGecko's current docs show authenticated browser examples for endpoints like `/coins/{id}` and `/coins/{id}/market_chart`. If the app logs `AxiosError: Network Error`, create a local env file and add your demo key:
+
+```bash
+REACT_APP_COINGECKO_DEMO_API_KEY=your_coingecko_demo_api_key
+```
+
+Use `.env.local` for local development, then restart `npm start`.
+
+By default, the app now calls CoinGecko directly and deduplicates repeated GET requests in development so React Strict Mode does not spam the API.
+
+If you specifically want to use a local proxy, set `REACT_APP_COINGECKO_BASE_URL=/api/v3` and restart the dev server.
+
+Reference docs:
+
+- https://docs.coingecko.com/reference/coins-id
+- https://docs.coingecko.com/v3.0.1/reference/coins-id-market-chart
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

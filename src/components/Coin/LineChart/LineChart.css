@@ -1,0 +1,94 @@
+.chart-card {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 1.5rem auto;
+  padding: 1.4rem 1.4rem 1.1rem;
+  background:
+    radial-gradient(circle at top right, rgba(0, 212, 255, 0.14), transparent 32%),
+    linear-gradient(145deg, rgba(10, 101, 238, 0.16), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 1.5rem;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(16px);
+  box-sizing: border-box;
+}
+
+.chart-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.chart-eyebrow {
+  margin: 0 0 0.45rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--cyan);
+}
+
+.chart-card-header h2 {
+  margin: 0;
+  color: var(--white);
+  font-size: clamp(1.2rem, 2vw, 1.9rem);
+  font-weight: 700;
+}
+
+.chart-note {
+  margin: 0.25rem 0 0;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 0.95rem;
+  text-align: right;
+}
+
+.chart-canvas-wrap {
+  position: relative;
+  height: 420px;
+  padding: 0.75rem 0.5rem 0.25rem;
+  border-radius: 1.1rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+@media only screen and (max-width: 800px) {
+  .chart-card {
+    width: calc(100% - 1rem);
+    margin: 1rem auto;
+    padding: 1.1rem 1rem 0.9rem;
+    border-radius: 1rem;
+  }
+
+  .chart-card-header {
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+
+  .chart-note {
+    margin-top: 0;
+    text-align: left;
+  }
+
+  .chart-canvas-wrap {
+    height: 320px;
+    padding: 0.4rem 0.1rem 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .chart-card-header h2 {
+    font-size: 1.1rem;
+  }
+
+  .chart-eyebrow {
+    font-size: 0.72rem;
+  }
+
+  .chart-note {
+    font-size: 0.85rem;
+  }
+
+  .chart-canvas-wrap {
+    height: 260px;
+  }
+}

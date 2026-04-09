@@ -1,0 +1,418 @@
+/* ─── Compare Page ──────────────────────────────────────────────────────────── */
+
+.compare-page {
+  padding-bottom: 3rem;
+}
+
+/* ─── Compare Hero ──────────────────────────────────────────────────────────── */
+
+.compare-hero {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 2.2rem auto 0;
+  padding: 1.9rem 2rem;
+  background:
+    radial-gradient(circle at right top, rgba(56, 223, 79, 0.14), transparent 30%),
+    linear-gradient(140deg, rgba(10, 101, 238, 0.18), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(0, 212, 255, 0.18);
+  border-radius: 1.6rem;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(16px);
+  box-sizing: border-box;
+}
+
+.compare-hero-eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--green);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.compare-hero h1 {
+  margin: 0;
+  color: var(--white);
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  line-height: 1.05;
+}
+
+.compare-hero-copy {
+  max-width: 640px;
+  margin: 0.85rem 0 0;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+/* ─── Select Coins Card ─────────────────────────────────────────────────────── */
+
+.select-coins-card {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 1.5rem auto 0;
+  padding: 1.25rem 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+  background:
+    radial-gradient(circle at top left, rgba(56, 223, 79, 0.12), transparent 28%),
+    linear-gradient(145deg, rgba(10, 101, 238, 0.16), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(0, 212, 255, 0.18);
+  border-radius: 1.4rem;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(16px);
+  box-sizing: border-box;
+}
+
+.select-coins-copy {
+  min-width: 0;
+  max-width: 430px;
+}
+
+.select-coins-eyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--green);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.select-coins-copy h3 {
+  margin: 0;
+  color: var(--white);
+  font-size: clamp(1.05rem, 1.7vw, 1.4rem);
+  font-weight: 700;
+}
+
+.select-coins-subtext {
+  margin: 0.45rem 0 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ─── Select Coins Controls ─────────────────────────────────────────────────── */
+
+.select-coins-controls {
+  width: min(520px, 100%);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.select-coins-control {
+  min-width: 0 !important;
+}
+
+.select-coins-control .MuiInputLabel-root {
+  color: rgba(255, 255, 255, 0.68);
+  font-weight: 600;
+}
+
+.select-coins-control .MuiInputLabel-root.Mui-focused,
+.select-coins-control .MuiInputLabel-root.MuiFormLabel-filled {
+  color: var(--green);
+}
+
+/* ─── Select Coins Dropdown ─────────────────────────────────────────────────── */
+
+.select-coins-dropdown {
+  color: var(--white) !important;
+  border-radius: 1rem !important;
+  background: rgba(255, 255, 255, 0.04);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.select-coins-dropdown:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 30px rgba(56, 223, 79, 0.12);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.select-coins-dropdown .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(56, 223, 79, 0.24);
+}
+
+.select-coins-dropdown:hover .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(56, 223, 79, 0.46);
+}
+
+.select-coins-dropdown.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--green);
+  border-width: 1px;
+  box-shadow: 0 0 0 4px rgba(56, 223, 79, 0.08);
+}
+
+.select-coins-dropdown .MuiSelect-select {
+  padding: 0.85rem 2.75rem 0.85rem 1rem;
+  display: flex;
+  align-items: center;
+  color: var(--white);
+  font-weight: 600;
+}
+
+.select-coins-dropdown .MuiSvgIcon-root {
+  color: var(--green);
+}
+
+/* ─── Select Coins Menu ─────────────────────────────────────────────────────── */
+
+.select-coins-menu {
+  margin-top: 0.4rem;
+  color: var(--white);
+  background: rgba(17, 17, 17, 0.98) !important;
+  border: 1px solid rgba(56, 223, 79, 0.16);
+  border-radius: 1rem !important;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35) !important;
+}
+
+.select-coins-menu .MuiList-root {
+  padding: 0.4rem;
+}
+
+.select-coins-menu .MuiMenuItem-root {
+  border-radius: 0.8rem;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.95rem;
+}
+
+.select-coins-menu .MuiMenuItem-root:hover {
+  background: rgba(56, 223, 79, 0.1);
+}
+
+.select-coins-menu .MuiMenuItem-root.Mui-selected {
+  background: rgba(56, 223, 79, 0.16);
+  color: var(--green);
+}
+
+.select-coins-menu .MuiMenuItem-root.Mui-selected:hover {
+  background: rgba(56, 223, 79, 0.22);
+}
+
+/* ─── SelectDays & PriceType — full-width centered ──────────────────────────── */
+
+.select-days-card,
+.price-type-card {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 1.5rem auto 0;
+  box-sizing: border-box;
+}
+
+/* ─── Compare Summary Grid — side by side ───────────────────────────────────── */
+
+.compare-summary-grid {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 1.5rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);   /* ← KEY FIX: was 1fr (stacked) */
+  gap: 1rem;
+}
+
+.compare-summary-card,
+.compare-feedback-card {
+  padding: 1.4rem;
+  background:
+    radial-gradient(circle at top left, rgba(0, 212, 255, 0.08), transparent 34%),
+    linear-gradient(145deg, rgba(10, 101, 238, 0.14), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(0, 212, 255, 0.18);
+  border-radius: 1.4rem;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(16px);
+  box-sizing: border-box;
+}
+
+.compare-summary-header {
+  margin-bottom: 1rem;
+}
+
+.compare-summary-eyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--cyan);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.compare-summary-header h2 {
+  margin: 0;
+  color: var(--white);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.compare-summary-symbol {
+  margin: 0.35rem 0 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+}
+
+/* ─── Compare Summary Table ─────────────────────────────────────────────────── */
+
+.compare-summary-table-wrap {
+  overflow: hidden;
+}
+
+.compare-summary-table {
+  width: 100%;
+  display: block;
+}
+
+.compare-summary-table tbody {
+  display: block;
+}
+
+.compare-summary-table .list-row-static {
+  grid-template-columns: 56px minmax(0, 1fr);
+  grid-template-areas:
+    "image    identity"
+    "change   change"
+    "price    price"
+    "volume   volume"
+    "market   market";
+  gap: 0.9rem;
+  align-items: stretch;
+}
+
+.compare-summary-table .list-row-static .td-image {
+  grid-area: image;
+  width: 56px;
+  display: flex;
+  align-items: center;
+}
+
+.compare-summary-table .list-row-static .coin-identity-cell {
+  grid-area: identity;
+  min-width: 0;
+}
+
+.compare-summary-table .list-row-static .coin-change-cell     { grid-area: change;  }
+.compare-summary-table .list-row-static .coin-price-cell      { grid-area: price;   }
+.compare-summary-table .list-row-static .coin-volume-cell     { grid-area: volume;  }
+.compare-summary-table .list-row-static .coin-market-cap-cell { grid-area: market;  }
+
+.compare-summary-table .list-row-static .coin-trend-cell {
+  display: none;
+}
+
+.compare-summary-table .list-row-static .coin-change-cell,
+.compare-summary-table .list-row-static .coin-price-cell,
+.compare-summary-table .list-row-static .coin-volume-cell,
+.compare-summary-table .list-row-static .coin-market-cap-cell {
+  min-height: auto;
+}
+
+.compare-summary-table .list-row-static .coin-price,
+.compare-summary-table .list-row-static .total-vol,
+.compare-summary-table .list-row-static .market-cap {
+  word-break: break-word;
+}
+
+/* ─── Compare Feedback Card ─────────────────────────────────────────────────── */
+
+.compare-feedback-card {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 1.5rem auto 0;
+  text-align: center;
+}
+
+.compare-feedback-card h2 {
+  margin: 0 0 0.6rem;
+  color: var(--white);
+  font-size: 1.4rem;
+}
+
+.compare-feedback-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+}
+
+/* ─── Responsive ────────────────────────────────────────────────────────────── */
+
+@media only screen and (max-width: 900px) {
+  .select-coins-card {
+    width: calc(100% - 1rem);
+    margin-top: 1rem;
+    padding: 1rem;
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: 1rem;
+  }
+
+  .select-coins-copy {
+    max-width: none;
+  }
+
+  .select-coins-controls {
+    width: 100%;
+  }
+
+  .compare-hero,
+  .compare-summary-grid,
+  .compare-feedback-card,
+  .select-days-card,
+  .price-type-card {
+    width: calc(100% - 1rem);
+  }
+
+  .compare-hero {
+    margin-top: 1.25rem;
+    padding: 1.4rem 1.1rem;
+    border-radius: 1rem;
+  }
+
+  .compare-summary-grid {
+    margin-top: 1rem;
+    grid-template-columns: 1fr;   /* stack on tablet */
+  }
+
+  .compare-summary-card,
+  .compare-feedback-card {
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .select-coins-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .select-coins-subtext {
+    font-size: 0.88rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .compare-summary-table .list-row-static {
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .compare-summary-table .list-row-static .td-image {
+    width: 48px;
+  }
+
+  .compare-summary-table .list-row-static .logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .compare-hero h1 {
+    font-size: 1.55rem;
+  }
+
+  .compare-hero-copy {
+    font-size: 0.92rem;
+  }
+
+  .compare-summary-header h2 {
+    font-size: 1.3rem;
+  }
+}

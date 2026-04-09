@@ -1,0 +1,158 @@
+.grid-container{
+width: 300px;
+background-color: var(--darkgrey);
+border: 2px solid var(--darkgrey);
+border-radius: 0.5rem;
+padding: 1rem;
+position: relative;
+}
+
+.grid-container:hover{
+border: var(--green);
+box-shadow: -1px 1px 28px 2px var(--green);
+transition: all 0.3s;
+}
+
+.grid-red:hover{
+border: var(--red) !important;
+box-shadow: -1px 1px 28px 2px var(--red) !important;
+transition: all 0.3s;
+}
+
+.watchlist-icon-grid{
+position: absolute;
+top: 1rem;
+right: 1rem;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+width: 32px;
+height: 32px;
+border-radius: 50%;
+transition: all 0.3s ease;
+}
+
+.watchlist-icon-grid:hover{
+background-color: rgba(0, 212, 255, 0.1);
+}
+
+.info{
+display: flex;
+justify-self: flex-start;
+align-items: center;
+gap: 0.5rem;
+padding: 0.5rem;
+}
+
+.logo{
+height: 3.5rem;
+width: 3.5rem;
+}
+
+.name-col{
+display: flex;
+flex-direction: column;
+gap: 0.4rem;
+}
+
+.symbol{
+color: var(--white);
+font-weight: 600;
+font-size: 1.2rem;
+text-transform: capitalize;
+margin: 0;
+}
+
+.name{
+color: var(--gray);
+font-weight: lighter;
+font-size: 1rem;
+text-transform: capitalize;
+margin: 0;
+}
+.chip{
+display: flex;
+align-items: flex-start;
+gap: 0.3rem;
+align-items: center;
+padding: 0.5rem;
+}
+
+.price-chip{
+border: 2px solid var(--green);
+border-radius: 2rem;
+padding: 0.35rem 1rem;
+text-align: center;
+font-weight: 500;
+font-size: 1.1rem;
+color: var(--green);
+}
+
+.price-chip:hover{
+background-color: var(--green);
+color: var(--white);
+transition: all 0.3s ease-in-out;
+cursor: pointer;
+}
+
+.chip-red{
+border: 2px solid var(--red) !important;
+color: var(--red) !important;
+}
+
+.chip-red:hover{
+background-color: var(--red) !important;
+color: var(--black) !important;
+transition: all 0.3s;
+cursor: pointer;
+}
+
+.trend-icon{
+display: flex;
+border: 2px solid var(--green);
+border-radius: 50%;
+height: 2rem;
+width: 2rem;
+justify-content: center;
+align-items: center;
+font-size: 1.1rem;
+color: var(--green);
+margin-left: 1rem;
+}
+
+.trend-icon:hover{
+background-color: var(--green);
+color: var(--white);
+transition: all 0.3s;
+cursor: pointer;
+}
+
+.red-icon{
+border: 2px solid var(--red) !important;
+color: var(--red) !important;
+}
+
+.red-icon:hover{
+background-color: var(--red) !important;
+color: var(--black) !important;
+transition: all 0.3s;
+cursor: pointer;
+}
+
+.info-container{
+margin: 0.8rem;
+
+}
+
+.info-container h3{
+color: var(--green);
+font-size: 1.1rem;
+font-weight: 500;
+margin: 0;
+}
+.total-vol,.market-cap{
+color: var(--gray);
+font-size: 1rem;
+font-weight: 500;
+}
