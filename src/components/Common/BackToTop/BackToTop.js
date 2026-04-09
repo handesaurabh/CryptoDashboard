@@ -25,14 +25,19 @@ const BackToTop = () => {
     }
 
     return (
-        <div
-            className='back-to-top'
+        <button
+            type="button"
+            className={`back-to-top ${isVisible ? "back-to-top-visible" : ""}`}
             id='myBtn'
             onClick={() => topFunction()}
-            style={{ display: isVisible ? "flex" : "none" }}
+            aria-label="Back to top"
+            aria-hidden={!isVisible}
+            tabIndex={isVisible ? 0 : -1}
         >
-            <KeyboardDoubleArrowUpSharpIcon style={{ color: "cyan", fontSize: "2.5rem" }} />
-        </div>
+            <span className="back-to-top-core">
+                <KeyboardDoubleArrowUpSharpIcon className="back-to-top-icon" />
+            </span>
+        </button>
     )
 }
 

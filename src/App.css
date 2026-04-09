@@ -1,0 +1,24 @@
+.App {
+  min-height: 100vh;
+  background: var(--black);
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5.6rem;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 640px) {
+  .app-content {
+    padding-bottom: 6.2rem;
+  }
+}

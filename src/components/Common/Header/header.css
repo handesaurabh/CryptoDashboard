@@ -5,7 +5,9 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 padding: 1.5rem 2rem;  /*1rem = 16px */
-background-color: #000;
+background: rgba(0, 0, 0, 0.88);
+backdrop-filter: blur(14px);
+z-index: 30;
 }
 
 .logo{
@@ -39,7 +41,8 @@ font-size: 1rem;
     padding: 1rem 1.5rem;
   }
 .logo{
-    font-size: 1rem;
+    font-size: 1.15rem;
+    line-height: 1;
   }
   .links{
     display: none;
@@ -48,9 +51,24 @@ font-size: 1rem;
   display: block;
 }
 .drawer-container{
-width: 40vw;
+width: min(78vw, 320px);
 background-color: var(--black);
 height: 100vh;
-padding: 1.5rem;
+padding: 1.5rem 1.25rem;
+display: flex;
+flex-direction: column;
+gap: 0.45rem;
+border-left: 1px solid rgba(0, 212, 255, 0.18);
+box-sizing: border-box;
 }
+}
+
+@media only screen and (max-width:480px) {
+  .navbar{
+    padding: 0.9rem 1rem;
+  }
+
+  .logo{
+    font-size: 1rem;
+  }
 }
