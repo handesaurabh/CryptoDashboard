@@ -4,10 +4,12 @@ const DEFAULT_COIN_GECKO_BASE_URL = "https://api.coingecko.com/api/v3";
 const configuredCoinGeckoBaseUrl = process.env.REACT_APP_CG_URL?.trim();
 const coinGeckoApiKey = process.env.REACT_APP_CG_KEY?.trim();
 const coinGeckoBaseUrl =
-    configuredCoinGeckoBaseUrl || DEFAULT_COIN_GECKO_BASE_URL;
+    configuredCoinGeckoBaseUrl &&
+    !configuredCoinGeckoBaseUrl.startsWith("/")
+        ? configuredCoinGeckoBaseUrl.replace(/\/$/, "")
+        : DEFAULT_COIN_GECKO_BASE_URL;
 
 export const hasCoinGeckoApiKey = Boolean(coinGeckoApiKey);
-const isLocalProxyUrl = coinGeckoBaseUrl.startsWith("/");
 const defaultHeaders = {
     Accept: "application/json",
     ...(coinGeckoApiKey ? { "x-cg-demo-api-key": coinGeckoApiKey } : {}),
@@ -149,9 +151,7 @@ export const getCoinGeckoErrorMessage = (error) => {
         }
 
         if (status === 404) {
-            return isLocalProxyUrl
-                ? "The local CoinGecko proxy is not responding. Check REACT_APP_CG_URL and restart the dev server."
-                : "CoinGecko returned 404 for this request. Check REACT_APP_CG_URL if you changed the default API URL.";
+            return "CoinGecko returned 404 for this request. Check REACT_APP_CG_URL if you changed the default API URL.";
         }
 
         if (status >= 500) {
