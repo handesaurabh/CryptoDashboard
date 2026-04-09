@@ -1,21 +1,20 @@
 import axios from "axios";
 
-const cgKey = process.env.REACT_APP_CG_KEY?.trim();
-export const COIN_GECKO_URL = "https://api.coingecko.com/api/v3/coins/";
-const directCgUrl = COIN_GECKO_URL.replace(/\/coins\/$/, "");
-const cgBaseUrl =
-    process.env.REACT_APP_CG_URL?.trim() ||
-    (process.env.NODE_ENV === "development" ? "/api/v3" : directCgUrl);
+const DEFAULT_COIN_GECKO_BASE_URL = "https://api.coingecko.com/api/v3";
+const configuredCoinGeckoBaseUrl = process.env.REACT_APP_CG_URL?.trim();
+const coinGeckoApiKey = process.env.REACT_APP_CG_KEY?.trim();
+const coinGeckoBaseUrl =
+    configuredCoinGeckoBaseUrl || DEFAULT_COIN_GECKO_BASE_URL;
 
-export const hasCgKey = Boolean(cgKey);
-const isLocalProxyUrl = cgBaseUrl.startsWith("/");
+export const hasCoinGeckoApiKey = Boolean(coinGeckoApiKey);
+const isLocalProxyUrl = coinGeckoBaseUrl.startsWith("/");
 const defaultHeaders = {
     Accept: "application/json",
-    ...(cgKey ? { "x-cg-demo-api-key": cgKey } : {}),
+    ...(coinGeckoApiKey ? { "x-cg-demo-api-key": coinGeckoApiKey } : {}),
 };
 
 export const coinGeckoClient = axios.create({
-    baseURL: cgBaseUrl,
+    baseURL: coinGeckoBaseUrl,
     timeout: 15000,
     headers: defaultHeaders,
 });
@@ -69,7 +68,7 @@ const awaitWithSignal = (requestPromise, signal) => {
 
 const buildRequestCacheKey = (config = {}) =>
     JSON.stringify({
-        baseURL: cgBaseUrl,
+        baseURL: coinGeckoBaseUrl,
         method: config.method || "get",
         url: config.url || "",
         params: config.params || {},
@@ -140,7 +139,7 @@ export const getCoinGeckoErrorMessage = (error) => {
         const status = error.response?.status;
 
         if (status === 401 || status === 403) {
-            return hasCgKey
+            return hasCoinGeckoApiKey
                 ? "CoinGecko rejected the configured demo API key."
                 : "CoinGecko requires a demo API key for this request. Add REACT_APP_CG_KEY to your local environment and restart the app.";
         }
@@ -151,8 +150,8 @@ export const getCoinGeckoErrorMessage = (error) => {
 
         if (status === 404) {
             return isLocalProxyUrl
-                ? "The local CoinGecko proxy is not responding. Restart the dev server so /api requests are forwarded correctly."
-                : "CoinGecko returned 404 for this request.";
+                ? "The local CoinGecko proxy is not responding. Check REACT_APP_CG_URL and restart the dev server."
+                : "CoinGecko returned 404 for this request. Check REACT_APP_CG_URL if you changed the default API URL.";
         }
 
         if (status >= 500) {
@@ -160,7 +159,7 @@ export const getCoinGeckoErrorMessage = (error) => {
         }
 
         if (error.request) {
-            return hasCgKey
+            return hasCoinGeckoApiKey
                 ? "The browser could not reach CoinGecko right now."
                 : "The browser could not reach CoinGecko. Add REACT_APP_CG_KEY to your local environment if CoinGecko is rejecting unauthenticated browser requests.";
         }

@@ -10,7 +10,7 @@ import { getCoinPrice } from '../functions/getCoinPrice';
 import LineChart from '../components/Coin/LineChart/LineChart';
 import SelectDays from '../components/Coin/SelectDays/SelectDays';
 import PriceType from '../components/Coin/PriceType/PriceType';
-import { hasCgKey } from '../functions/coinGeckoClient';
+import { hasCoinGeckoApiKey } from '../functions/coinGeckoClient';
 
 const priceTypeConfig = {
     prices: {
@@ -84,7 +84,7 @@ const CoinPage = () => {
                 setMarketData(null);
                 setChartData(null);
                 setError(
-                    hasCgKey
+                    hasCoinGeckoApiKey
                         ? "Unable to load coin details right now."
                         : "Unable to load coin details right now. Add REACT_APP_CG_KEY to .env.local and restart the app if CoinGecko is rejecting browser requests."
                 );
